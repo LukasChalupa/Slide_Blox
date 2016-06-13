@@ -7,7 +7,9 @@ h1 {
 }
 
 .content {
+	position: relative;
 	width: 500px;
+	height: 350px;
 	padding: 80px;
 	border-radius: 5px;
 	margin: auto;
@@ -16,11 +18,11 @@ h1 {
 
 .block {
 	display: block;
-	float: left;
-	width: 80px;
-	height: 80px;
+	position: absolute;
+	box-sizing: border-box;
+	width: 25%;
+	height: 25%;
 	padding: 20px;
-	margin: 2px;
 	background-color: yellow;
 	text-align: center;
 }
