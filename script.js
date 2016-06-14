@@ -4,9 +4,11 @@ $(document).ready(function(){
     	blocks[i] = [];
 		for(j=0; j<4; j++) {
 			blocks[i][j] = $("#"+(i*4+j));
-			$(blocks[i][j]).css("left",(25*j+0.5)+"%");
-			$(blocks[i][j]).css("top",(25*i+0.5)+"%");
-		}
+			$(blocks[i][j]).css({"left":(25*j+0.5)+"%",
+                                 "top":(25*i+0.5)+"%",
+                                 "background": "url(src/honzik.jpeg) " + 25*j + "% " + 25*i + "%",
+                                 "background-size":"500%"});
+        }
 	}
     blocks[3][3] = 0;
 

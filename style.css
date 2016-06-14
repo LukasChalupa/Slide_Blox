@@ -3,6 +3,7 @@ body {
 }
 
 h1 {
+	font-size: 46px;
 	text-align: center;
 }
 
@@ -22,12 +23,12 @@ h1 {
 	width: 24%;
 	height: 24%;
 	padding: 20px;
-	background-color: yellow;
 	text-align: center;
 	cursor: pointer;
+	-webkit-transition: left 0.5s, top 0.5s;
+	transition: left 0.5s, top 0.5s;
 }
 
-.clearer {
-	display: block;
-	clear: both;
+.block h2 {
+	font-size: 32px;
 }
