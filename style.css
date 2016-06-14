@@ -8,10 +8,9 @@ h1 {
 
 .content {
 	position: relative;
-	width: 500px;
+	width: 400px;
 	height: 350px;
 	padding: 80px;
-	border-radius: 5px;
 	margin: auto;
 	background-color: white;
 }
@@ -20,11 +19,12 @@ h1 {
 	display: block;
 	position: absolute;
 	box-sizing: border-box;
-	width: 25%;
-	height: 25%;
+	width: 24%;
+	height: 24%;
 	padding: 20px;
 	background-color: yellow;
 	text-align: center;
+	cursor: pointer;
 }
 
 .clearer {
