@@ -1,9 +1,9 @@
 body {
-	background-color: rgb(147,222,122);
+	background-color: rgb(127,222,122);
 }
 
 h1 {
-	font-size: 46px;
+	font-size: 40px;
 	text-align: center;
 }
 
@@ -20,15 +20,41 @@ h1 {
 	display: block;
 	position: absolute;
 	box-sizing: border-box;
-	width: 24%;
-	height: 24%;
+	width: 25%;
+	height: 25%;
 	padding: 20px;
 	text-align: center;
+	background-color: yellow;
+	background: url(src/honzik.jpeg);
+	background-size: 100%;
 	cursor: pointer;
 	-webkit-transition: left 0.5s, top 0.5s;
 	transition: left 0.5s, top 0.5s;
+	overflow: hidden;
+}
+
+.block span {
+	width: 400%;
+	height: 400%;
+	display: block;
+	background: url(src/honzik.jpeg);
+	background-size: cover;
+	background-position: center;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 .block h2 {
+	position: relative;
 	font-size: 32px;
+	color: magenta;
+	z-index: 200;
+}
+
+button {
+	display: block;
+	margin: 10px auto;
+	padding: 5px;
+	font-size: 20px;
 }

@@ -13,10 +13,12 @@
 		<div class="content">
 			<?php
 				for ($i=0; $i < 15; $i++) { 
-					echo '<div class="block" id="' . $i . '"><h2>' . ($i+1) . '</h2></div>';
+					echo '<div class="block" id="' . $i . '"><span></span><h2>' . ($i+1) . '</h2></div>';
 				}
 			?>
 		</div>
+
+		<button id="shuffle">Shuffle</button>
 
 		<div class="sideBar">
 		</div>
