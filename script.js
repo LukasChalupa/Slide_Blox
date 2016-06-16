@@ -2,6 +2,8 @@ var blocks = [];
 var width = 4;
 var height = 4;
 
+var x0, y0; // states the x,y position of an empty block
+
 $(document).ready(function(){
     for(i=0; i<height; i++) {
     	blocks[i] = [];
@@ -15,44 +17,88 @@ $(document).ready(function(){
     blocks[3][3] = 0;
 
 
+    /* move the blocks by clicking on adjacent to emty one */
     $(".block").click(function() {
-        var xPos;
-        var yPos;
-
-    	outer:
-        for(i=0; i<height; i++) {
-    		for(j=0; j<width; j++) {
-                if(blocks[i][j] == 0) {
-                    xPos = j;
-                    yPos = i;
-                    break outer;
-    			}
-    		}
-    	}
+        getEmptyBlockPosition();
         var $blockId = $(this).attr("id");
-        if(xPos>0 && $blockId == blocks[yPos][xPos-1].attr("id")) { // move right
-            $(this).css("left", 100/width*xPos + "%");
-            blocks[yPos][xPos] = $(this);
-            blocks[yPos][xPos-1] = 0;
-        } else if(xPos<3 && $blockId == blocks[yPos][xPos+1].attr("id")) { // move left
-            $(this).css("left", 100/width*xPos + "%");
-            blocks[yPos][xPos] = $(this);
-            blocks[yPos][xPos+1] = 0;
-        } else if(yPos>0 && $blockId == blocks[yPos-1][xPos].attr("id")) { // move up
-            $(this).css("top", 100/height*yPos + "%");
-            blocks[yPos][xPos] = $(this);
-            blocks[yPos-1][xPos] = 0;
-        } else if(yPos<3 && $blockId == blocks[yPos+1][xPos].attr("id")) { // move down
-            $(this).css("top", 100/height*yPos + "%");
-            blocks[yPos][xPos] = $(this);
-            blocks[yPos+1][xPos] = 0;
+        if(x0>0 && $blockId == blocks[y0][x0-1].attr("id")) { // move right
+            moveRight();
+        } else if(x0<width-1 && $blockId == blocks[y0][x0+1].attr("id")) { // move left
+            moveLeft();
+        } else if(y0>0 && $blockId == blocks[y0-1][x0].attr("id")) { // move down
+            moveDown();
+        } else if(y0<height-1 && $blockId == blocks[y0+1][x0].attr("id")) { // move up
+            moveUp();
         }
     });
+
+    /* move block with the arrow keys */
+    $(document).keydown(function(e) {
+        getEmptyBlockPosition();
+        switch(e.which) {
+            case 37: // left arrow key
+                moveLeft();
+                break;
+            case 38: // up arrow key
+                moveUp();
+                break;
+            case 39: // right arrow key
+                moveRight();
+                break;
+            case 40: // down arrow key
+                moveDown();
+                break;
+        }
+    })
+
+    function moveRight() {
+        if(x0>0) {
+            blocks[y0][x0-1].css("left", 100/width*x0 + "%");
+            blocks[y0][x0] = blocks[y0][x0-1];
+            blocks[y0][x0-1] = 0;
+        }
+    }
+    function moveLeft() {
+        if(x0<width-1) {
+            blocks[y0][x0+1].css("left", 100/width*x0 + "%");
+            blocks[y0][x0] = blocks[y0][x0+1];
+            blocks[y0][x0+1] = 0;
+        }
+    }
+    function moveUp() {
+        if(y0<height-1) {
+            blocks[y0+1][x0].css("top", 100/height*y0 + "%");
+            blocks[y0][x0] = blocks[y0+1][x0];
+            blocks[y0+1][x0] = 0;
+        }
+    }
+    function moveDown() {
+        if(y0>0) {
+            blocks[y0-1][x0].css("top", 100/height*y0 + "%");
+            blocks[y0][x0] = blocks[y0-1][x0];
+            blocks[y0-1][x0] = 0;
+        }
+    }
+
 
     $('#shuffle').click(function(){
         shuffle();
     });
 
+    /* save position of the empty block to variables x0,y0 */
+    function getEmptyBlockPosition() {
+        for(i=0; i<height; i++) {
+            for(j=0; j<width; j++) {
+                if(blocks[i][j] == 0) {
+                    x0 = j;
+                    y0 = i;
+                    return;
+                }
+            }
+        }
+    }
+
+    /* Randomly shuffle all blocks */
     function shuffle() {
         for(i=0; i<height; i++) {
             for(j=0; j<height; j++) {

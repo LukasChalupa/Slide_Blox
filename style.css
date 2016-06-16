@@ -25,7 +25,6 @@ h1 {
 	padding: 20px;
 	text-align: center;
 	background-color: yellow;
-	background: url(src/honzik.jpeg);
 	background-size: 100%;
 	cursor: pointer;
 	-webkit-transition: left 0.5s, top 0.5s;
@@ -37,7 +36,7 @@ h1 {
 	width: 400%;
 	height: 400%;
 	display: block;
-	background: url(src/honzik.jpeg);
+	background: url(src/michalcak.jpg);
 	background-size: cover;
 	background-position: center;
 	position: absolute;
@@ -48,7 +47,7 @@ h1 {
 .block h2 {
 	position: relative;
 	font-size: 32px;
-	color: magenta;
+	color: rgba(0,0,255,0.4);
 	z-index: 200;
 }
 
