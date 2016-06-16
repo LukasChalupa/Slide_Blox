@@ -11,11 +11,31 @@
 	<body>
 		<h1>SlideBlox</h1>
 		<div class="content">
-			<?php
-				for ($i=0; $i < 15; $i++) { 
-					echo '<div class="block" id="' . $i . '"><span></span><h2>' . ($i+1) . '</h2></div>';
-				}
-			?>
+			<div class="box">
+				<?php
+					for ($i=0; $i < 15; $i++) { 
+						echo '<div class="block" id="' . $i . '">
+							  	<span></span>
+							  	<h2>' . ($i+1) . '</h2>
+							  </div>';
+					}
+				?>
+			</div>
+
+			<form class="settings">
+				<h3>Settings</h3>
+				<div>
+					<label>Height:</label>
+					<input type="number" name="height" min="3" max="10" value="3"><br>
+				</div>
+				<div>
+					<label>Width:</label>
+					<input type="number" name="width" min="3" max="10" value="3"><br>
+				</div>
+				<div
+					><button type="submit" id="submit">Submit</button>
+				</div>
+			</form>
 		</div>
 
 		<button id="shuffle">Shuffle</button>

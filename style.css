@@ -8,9 +8,37 @@ h1 {
 }
 
 .content {
+	text-align: center;
+}
+
+
+.settings {
+	width: 300px;
+	display: block;
+	position: absolute;
+	top: 100px;
+	right: 20px;
+}
+
+label {
+	display: inline-block;
+	width: 50px;
+	text-align: right;
+}
+input {
+	margin: 5px 0;
+	width: 50px;
+	text-align: center;
+}
+
+.settings > div {
+
+}
+
+.box {
 	position: relative;
-	width: 400px;
-	height: 350px;
+	width: 50%;
+	height: 60vh;
 	padding: 80px;
 	margin: auto;
 	background-color: white;
@@ -51,7 +79,7 @@ h1 {
 	z-index: 200;
 }
 
-button {
+#shuffle {
 	display: block;
 	margin: 10px auto;
 	padding: 5px;

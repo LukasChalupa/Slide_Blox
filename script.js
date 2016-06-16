@@ -14,7 +14,8 @@ $(document).ready(function(){
             $(blocks[i][j]).find("span").css({"left":-100*j + "%", "top":-100*i + "%"});
         }
 	}
-    blocks[3][3] = 0;
+    blocks[height-1][width-1] = 0;
+    shuffle();
 
 
     /* move the blocks by clicking on adjacent to emty one */
@@ -40,12 +41,14 @@ $(document).ready(function(){
                 moveLeft();
                 break;
             case 38: // up arrow key
+                e.preventDefault();
                 moveUp();
                 break;
             case 39: // right arrow key
                 moveRight();
                 break;
             case 40: // down arrow key
+                e.preventDefault();
                 moveDown();
                 break;
         }
@@ -81,10 +84,6 @@ $(document).ready(function(){
     }
 
 
-    $('#shuffle').click(function(){
-        shuffle();
-    });
-
     /* save position of the empty block to variables x0,y0 */
     function getEmptyBlockPosition() {
         for(i=0; i<height; i++) {
@@ -98,10 +97,18 @@ $(document).ready(function(){
         }
     }
 
+    $("#submit").click(function(){
+        
+        alert("don't click this yet!");
+    });
+
     /* Randomly shuffle all blocks */
+    $('#shuffle').click(function(){
+        shuffle();
+    });
     function shuffle() {
         for(i=0; i<height; i++) {
-            for(j=0; j<height; j++) {
+            for(j=0; j<width; j++) {
                 var x = Math.floor((Math.random() * width));
                 var y = Math.floor((Math.random() * height));
 
