@@ -28,7 +28,7 @@ $(document).ready(function(){
             }
         }
         blocks[height-1][width-1] = 0;
-        shuffle();
+        //shuffle();
     }
 
 
@@ -43,7 +43,7 @@ $(document).ready(function(){
     });
 
     /* move the blocks by clicking on adjacent to empty one */
-    $(".block").click(function() {
+    $(document).on('click','.block',function() {
         getEmptyBlockPosition();
         var $blockId = $(this).attr("id");
         if(x0>0 && $blockId == blocks[y0][x0-1].attr("id")) { // move right
