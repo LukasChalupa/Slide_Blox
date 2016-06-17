@@ -5,9 +5,17 @@ var height = 4;
 var x0, y0; // states the x,y position of an empty block
 
 $(document).ready(function(){
+    var id = 0;
     for(i=0; i<height; i++) {
     	blocks[i] = [];
 		for(j=0; j<width; j++) {
+
+            // append block to html
+            if(id!=width*height-1) {
+                $(".box").append('<div class="block" id="' + id + '"><span></span><h2>' + ++id + '</h2></div>');
+            }
+
+            // set its position
 			blocks[i][j] = $("#"+(i*height+j));
 			$(blocks[i][j]).css({"left":100/width*j+"%",
                                  "top":100/height*i+"%"});
