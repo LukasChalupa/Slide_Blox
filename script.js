@@ -5,28 +5,48 @@ var height = 4;
 var x0, y0; // states the x,y position of an empty block
 
 $(document).ready(function(){
-    var id = 0;
-    for(i=0; i<height; i++) {
-    	blocks[i] = [];
-		for(j=0; j<width; j++) {
+    fillBoard();
+    
 
-            // append block to html
-            if(id!=width*height-1) {
-                $(".box").append('<div class="block" id="' + id + '"><span></span><h2>' + ++id + '</h2></div>');
+    function fillBoard() {
+        console.log("filling board. w=" + width + " h=" + height);
+
+        var id = 0;
+        for(i=0; i<height; i++) {
+            blocks[i] = [];
+            for(j=0; j<width; j++) {
+
+                // append block to html
+                if(id!=width*height - 1) {
+                    $(".box").append('<div class="block" id="' + id + '"><span></span><h2>' + (++id) + '</h2></div>');
+                }
+
+                // set its position
+                blocks[i][j] = $("#"+(i*height+j));
+                $(blocks[i][j]).css({"left":100/width*j+"%",
+                                     "top":100/height*i+"%"});
+                
+                console.log("block " + (id-1) + ", left: " + 100/width*j + ", top: " + 100/height*i);
+                
+                $(blocks[i][j]).find("span").css({"left":-100*j + "%", "top":-100*i + "%"});
             }
-
-            // set its position
-			blocks[i][j] = $("#"+(i*height+j));
-			$(blocks[i][j]).css({"left":100/width*j+"%",
-                                 "top":100/height*i+"%"});
-            $(blocks[i][j]).find("span").css({"left":-100*j + "%", "top":-100*i + "%"});
         }
-	}
-    blocks[height-1][width-1] = 0;
-    shuffle();
+        blocks[height-1][width-1] = 0;
+        //shuffle();
+    }
 
 
-    /* move the blocks by clicking on adjacent to emty one */
+    /* adjust the settings according to filled form */
+    $("#submit").click(function(){
+        $(".box").empty();
+        width = $("#w").val();
+        height = $("#h").val();
+        fillBoard();
+        $("span").css({"width":width*100 + "%", "height":height*100 + "%"});
+        $(".block").css({"width":100/width + "%", "height":100/height + "%"});
+    });
+
+    /* move the blocks by clicking on adjacent to empty one */
     $(".block").click(function() {
         getEmptyBlockPosition();
         var $blockId = $(this).attr("id");
@@ -104,11 +124,6 @@ $(document).ready(function(){
             }
         }
     }
-
-    $("#submit").click(function(){
-        
-        alert("don't click this yet!");
-    });
 
     /* Randomly shuffle all blocks */
     $('#shuffle').click(function(){
