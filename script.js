@@ -9,8 +9,6 @@ $(document).ready(function(){
     
 
     function fillBoard() {
-        console.log("filling board. w=" + width + " h=" + height);
-
         var id = 0;
         for(i=0; i<height; i++) {
             blocks[i] = [];
@@ -18,21 +16,19 @@ $(document).ready(function(){
 
                 // append block to html
                 if(id!=width*height - 1) {
-                    $(".box").append('<div class="block" id="' + id + '"><span></span><h2>' + (++id) + '</h2></div>');
+                    $(".box").append('<div class="block" id="' + id + '"><span></span><h2>' + (id+1) + '</h2></div>');
                 }
 
                 // set its position
-                blocks[i][j] = $("#"+(i*height+j));
-                $(blocks[i][j]).css({"left":100/width*j+"%",
-                                     "top":100/height*i+"%"});
-                
-                console.log("block " + (id-1) + ", left: " + 100/width*j + ", top: " + 100/height*i);
-                
+                blocks[i][j] = $("#"+id);
+                blocks[i][j].css({"left":100/width*j+"%",
+                                  "top":100/height*i+"%"});                
                 $(blocks[i][j]).find("span").css({"left":-100*j + "%", "top":-100*i + "%"});
+                id++;
             }
         }
         blocks[height-1][width-1] = 0;
-        //shuffle();
+        shuffle();
     }
 
 

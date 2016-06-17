@@ -49,7 +49,6 @@ input {
 	padding: 20px;
 	text-align: center;
 	background-color: yellow;
-	background-size: 100%;
 	cursor: pointer;
 	-webkit-transition: left 0.5s, top 0.5s;
 	transition: left 0.5s, top 0.5s;
