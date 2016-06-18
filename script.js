@@ -2,6 +2,7 @@ var blocks = [];
 var width = 4;
 var height = 4;
 
+var numberOfMoves = 0;
 var x0, y0; // states the x,y position of an empty block
 
 $(document).ready(function(){
@@ -28,16 +29,21 @@ $(document).ready(function(){
             }
         }
         blocks[height-1][width-1] = 0;
-        //shuffle();
+        shuffle();
     }
 
 
     /* adjust the settings according to filled form */
     $("#submit").click(function(){
-        $(".box").empty();
+        if($("#w").val() > 10 || $("#h").val() > 10) {
+            alert("Insert values in range 3-10");
+            return;
+        }
         width = $("#w").val();
         height = $("#h").val();
+        $(".box").empty();
         fillBoard();
+        $("h2").css({"font-size":1/height * 200 + "px"});
         $("span").css({"width":width*100 + "%", "height":height*100 + "%"});
         $(".block").css({"width":100/width + "%", "height":100/height + "%"});
     });
@@ -55,6 +61,8 @@ $(document).ready(function(){
         } else if(y0<height-1 && $blockId == blocks[y0+1][x0].attr("id")) { // move up
             moveUp();
         }
+
+        $("#movesNum").text(numberOfMoves);
     });
 
     /* move block with the arrow keys */
@@ -76,6 +84,7 @@ $(document).ready(function(){
                 moveDown();
                 break;
         }
+        $("#movesNum").text(numberOfMoves);
     })
 
     function moveRight() {
@@ -83,6 +92,7 @@ $(document).ready(function(){
             blocks[y0][x0-1].css("left", 100/width*x0 + "%");
             blocks[y0][x0] = blocks[y0][x0-1];
             blocks[y0][x0-1] = 0;
+            numberOfMoves++;
         }
     }
     function moveLeft() {
@@ -90,6 +100,7 @@ $(document).ready(function(){
             blocks[y0][x0+1].css("left", 100/width*x0 + "%");
             blocks[y0][x0] = blocks[y0][x0+1];
             blocks[y0][x0+1] = 0;
+            numberOfMoves++;
         }
     }
     function moveUp() {
@@ -97,6 +108,7 @@ $(document).ready(function(){
             blocks[y0+1][x0].css("top", 100/height*y0 + "%");
             blocks[y0][x0] = blocks[y0+1][x0];
             blocks[y0+1][x0] = 0;
+            numberOfMoves++;
         }
     }
     function moveDown() {
@@ -104,6 +116,7 @@ $(document).ready(function(){
             blocks[y0-1][x0].css("top", 100/height*y0 + "%");
             blocks[y0][x0] = blocks[y0-1][x0];
             blocks[y0-1][x0] = 0;
+            numberOfMoves++;
         }
     }
 
@@ -139,6 +152,7 @@ $(document).ready(function(){
                 $(blocks[y][x]).css({"top" : y*(100/height) + "%", "left" : x*(100/width)  + "%"});
             }
         }
-
+        numberOfMoves = 0;
+        $("#movesNum").text(numberOfMoves);
     }
  });
