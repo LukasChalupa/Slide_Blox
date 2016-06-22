@@ -1,26 +1,35 @@
 body {
-	background-color: rgb(127,222,122);
+	background-color: rgb(92,184,50);
 }
 
 h1 {
 	font-size: 40px;
+	margin-bottom: 50px;
 	text-align: center;
 }
 
 .content {
-	text-align: center;
+	display: block;
+	background-color: rgb(123,255,61);
+	width: 800px;
+	height: 610px;
+	padding: 30px 200px;
+	margin: auto;
 }
 
+.sidebar {
+	width: 150px;
+	height: 590px;
+	float: left;
+	text-align: center;
+	padding: 10px;
+	margin-left: 5px;
+}
 
 .settings, .stats {
-	width: 300px;
-	position: absolute;
-	top: 100px;
-	right: 20px;
-}
-
-.stats {
-	top: 280px;
+	width: 150px;
+	margin-bottom: 180px;
+	text-align: center;
 }
 
 label {
@@ -34,9 +43,25 @@ input {
 	text-align: center;
 }
 
+#shuffle {
+	padding: 5px;
+	font-size: 20px;
+	border: solid 6px rgb(92,184,50);
+	border-radius: 10px;
+	background-color: rgb(123,255,61);
+	text-align: center;
+	cursor: pointer;
+	-webkit-transition: background-color 0.3s;
+	transition: background-color 0.3s;
+}
+#shuffle:hover {
+	background-color: rgb(95,194,48);
+}
+
 .box {
 	position: relative;
-	width: 450px;
+	float: left;
+ 	width: 450px;
 	height: 450px;
 	padding: 80px;
 	margin: auto;
@@ -77,9 +102,7 @@ input {
 	z-index: 200;
 }
 
-#shuffle {
-	display: block;
-	margin: 10px auto;
-	padding: 5px;
-	font-size: 20px;
+.footer {
+	clear: both;
+	height: 50px;
 }
