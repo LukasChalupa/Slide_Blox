@@ -1,5 +1,5 @@
 body {
-	background-color: rgb(92,184,50);
+	background-color: rgb(149,207,114);
 }
 
 h1 {
@@ -10,11 +10,12 @@ h1 {
 
 .content {
 	display: block;
-	background-color: rgb(123,255,61);
+	background-color: rgb(203,240,180);
 	width: 800px;
-	height: 610px;
-	padding: 30px 200px;
+	height: 650px;
+	padding: 30px 200px 10px 200px;
 	margin: auto;
+	border-radius: 5px;
 }
 
 .sidebar {
@@ -44,18 +45,22 @@ input {
 }
 
 #shuffle {
-	padding: 5px;
+	padding: 5px 10px;
 	font-size: 20px;
-	border: solid 6px rgb(92,184,50);
-	border-radius: 10px;
-	background-color: rgb(123,255,61);
+	border: solid 4px rgb(149,207,114);
+	border-radius: 5px;
+	background-color: rgb(203,240,180);
 	text-align: center;
 	cursor: pointer;
 	-webkit-transition: background-color 0.3s;
 	transition: background-color 0.3s;
 }
 #shuffle:hover {
-	background-color: rgb(95,194,48);
+	background-color: rgb(162,217,128);
+}
+
+#shuffle:active {
+	background-color: rgb(150,227,102);
 }
 
 .box {
@@ -64,7 +69,6 @@ input {
  	width: 450px;
 	height: 450px;
 	padding: 80px;
-	margin: auto;
 	background-color: white;
 }
 
@@ -76,7 +80,6 @@ input {
 	height: 25%;
 	padding: 1%;
 	text-align: center;
-	background-color: yellow;
 	cursor: pointer;
 	-webkit-transition: left 0.5s, top 0.5s;
 	transition: left 0.5s, top 0.5s;
@@ -102,7 +105,12 @@ input {
 	z-index: 200;
 }
 
-.footer {
+#description {
+	padding-top: 10px;
+	padding-left: 135px;
 	clear: both;
+}
+
+.footer {
 	height: 50px;
 }
