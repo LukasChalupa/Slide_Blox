@@ -81,8 +81,7 @@ $(document).ready(function(){
         }
     });
     $("input:radio").change(function(){
-        $(".box").empty();
-        fillBoard();
+        $("#submit").click();
         $(".block span").css({"background":"url(src/" + this.value + ".jpg)",
                               "background-size":"cover"});
     });
