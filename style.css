@@ -29,7 +29,7 @@ h1 {
 
 .settings, .stats {
 	width: 150px;
-	margin-bottom: 180px;
+	margin-bottom: 115px;
 	text-align: center;
 }
 
@@ -90,7 +90,7 @@ input {
 	width: 400%;
 	height: 400%;
 	display: block;
-	background: url(src/Ali.JPG);
+	background: url(src/1.jpg);
 	background-size: cover;
 	background-position: center;
 	position: absolute;

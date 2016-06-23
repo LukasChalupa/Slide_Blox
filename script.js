@@ -65,6 +65,20 @@ $(document).ready(function(){
         $("#movesNum").text(numberOfMoves);
     });
 
+    /* Change background image */
+    $('input[type="radio"]').keydown(function(e) {
+        var arrowKeys = [37, 38, 39, 40];
+        if (arrowKeys.indexOf(e.which) !== -1) {
+            $(this).blur();
+            return false;
+        }
+    });
+    $("input:radio").change(function(){
+        $(".block span").css({"background":"url(src/" + this.value + ".jpg)",
+                              "background-size":"cover"});
+        shuffle();
+    });
+
     /* move block with the arrow keys */
     $(document).keydown(function(e) {
         getEmptyBlockPosition();
