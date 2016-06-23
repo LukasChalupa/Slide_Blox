@@ -25,6 +25,7 @@ h1 {
 	text-align: center;
 	padding: 10px;
 	margin-left: 5px;
+	outline: none;
 }
 
 .settings, .stats {
@@ -52,6 +53,7 @@ input {
 	background-color: rgb(203,240,180);
 	text-align: center;
 	cursor: pointer;
+	outline: none;
 	-webkit-transition: background-color 0.3s;
 	transition: background-color 0.3s;
 }

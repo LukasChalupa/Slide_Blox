@@ -34,6 +34,13 @@ $(document).ready(function(){
 
 
     /* adjust the settings according to filled form */
+    // submit on enter
+    $('.settings').keypress(function (e) {
+        if(e.which == 13) {
+            $('#submit').click();
+            return false;
+        }
+    });
     $("#submit").click(function(){
         if($("#w").val() > 10 || $("#h").val() > 10) {
             alert("Insert values in range 3-10");
@@ -74,9 +81,10 @@ $(document).ready(function(){
         }
     });
     $("input:radio").change(function(){
+        $(".box").empty();
+        fillBoard();
         $(".block span").css({"background":"url(src/" + this.value + ".jpg)",
                               "background-size":"cover"});
-        shuffle();
     });
 
     /* move block with the arrow keys */
