@@ -5,6 +5,8 @@ var height = 4;
 var numberOfMoves = 0;
 var x0, y0; // states the x,y position of an empty block
 
+var img = 1;
+
 $(document).ready(function(){
     fillBoard();
     
@@ -51,7 +53,8 @@ $(document).ready(function(){
         $(".box").empty();
         fillBoard();
         $("h2").css({"font-size":1/height * 200 + "px"});
-        $("span").css({"width":width*100 + "%", "height":height*100 + "%"});
+        $("span").css({"width":width*100 + "%", "height":height*100 + "%",
+                       "background":"url(src/" + img + ".jpg)", "background-size":"cover"});
         $(".block").css({"width":100/width + "%", "height":100/height + "%"});
     });
 
@@ -82,7 +85,8 @@ $(document).ready(function(){
     });
     $("input:radio").change(function(){
         $("#submit").click();
-        $(".block span").css({"background":"url(src/" + this.value + ".jpg)",
+        img = this.value;
+        $(".block span").css({"background":"url(src/" + img + ".jpg)",
                               "background-size":"cover"});
     });
 
