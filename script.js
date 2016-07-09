@@ -2,6 +2,7 @@ var blocks = [];
 var width = 4;
 var height = 4;
 
+var finalState = 0;
 var numberOfMoves = 0;
 var x0, y0; // states the x,y position of an empty block
 
@@ -32,6 +33,7 @@ $(document).ready(function(){
         }
         blocks[height-1][width-1] = 0;
         shuffle();
+        getFinalState();
     }
 
 
@@ -54,7 +56,7 @@ $(document).ready(function(){
         fillBoard();
         $("h2").css({"font-size":1/height * 200 + "px"});
         $("span").css({"width":width*100 + "%", "height":height*100 + "%",
-                       "background":"url(src/" + img + ".jpg)", "background-size":"cover"});
+                       "background-image":"url(src/" + img + ".jpg)"});
         $(".block").css({"width":100/width + "%", "height":100/height + "%"});
     });
 
@@ -86,8 +88,7 @@ $(document).ready(function(){
     $("input:radio").change(function(){
         $("#submit").click();
         img = this.value;
-        $(".block span").css({"background":"url(src/" + img + ".jpg)",
-                              "background-size":"cover"});
+        $(".block span").css({"background-image":"url(src/" + img + ".jpg)"});
     });
 
     /* move block with the arrow keys */
@@ -115,6 +116,7 @@ $(document).ready(function(){
     function moveRight() {
         if(x0>0) {
             blocks[y0][x0-1].css("left", 100/width*x0 + "%");
+            acualizeFinalState(blocks[y0][x0-1], y0*height+x0-1, y0*height+x0);
             blocks[y0][x0] = blocks[y0][x0-1];
             blocks[y0][x0-1] = 0;
             numberOfMoves++;
@@ -123,6 +125,7 @@ $(document).ready(function(){
     function moveLeft() {
         if(x0<width-1) {
             blocks[y0][x0+1].css("left", 100/width*x0 + "%");
+            acualizeFinalState(blocks[y0][x0+1], y0*height+x0+1, y0*height+x0);
             blocks[y0][x0] = blocks[y0][x0+1];
             blocks[y0][x0+1] = 0;
             numberOfMoves++;
@@ -131,6 +134,7 @@ $(document).ready(function(){
     function moveUp() {
         if(y0<height-1) {
             blocks[y0+1][x0].css("top", 100/height*y0 + "%");
+            acualizeFinalState(blocks[y0+1][x0], (y0+1)*height+x0, y0*height+x0);
             blocks[y0][x0] = blocks[y0+1][x0];
             blocks[y0+1][x0] = 0;
             numberOfMoves++;
@@ -139,6 +143,7 @@ $(document).ready(function(){
     function moveDown() {
         if(y0>0) {
             blocks[y0-1][x0].css("top", 100/height*y0 + "%");
+            acualizeFinalState(blocks[y0-1][x0], (y0-1)*height+x0, y0*height+x0);
             blocks[y0][x0] = blocks[y0-1][x0];
             blocks[y0-1][x0] = 0;
             numberOfMoves++;
@@ -156,6 +161,29 @@ $(document).ready(function(){
                     return;
                 }
             }
+        }
+    }
+
+    /* get finish state (say how many blocks are on finishing positions) */
+    function getFinalState() {
+        finalState = 0;
+        for(i = 0; i<height; i++) {
+            for(j = 0; j<height; j++) {
+                if($(blocks[i][j]).attr("id") == (i*height+j)) {
+                    finalState++;
+                }
+            }
+        }
+    }
+    function acualizeFinalState(element, oldPos, newPos) {
+        if($(element).attr("id") == oldPos) {
+            finalState--;
+        } else if($(element).attr("id") == newPos) {
+            finalState++;
+        }
+        console.log(finalState);
+        if(finalState == height*width-1) {
+            alert("Congratulations, you finished the puzzle.")
         }
     }
 
@@ -179,5 +207,6 @@ $(document).ready(function(){
         }
         numberOfMoves = 0;
         $("#movesNum").text(numberOfMoves);
+        getFinalState();
     }
  });
