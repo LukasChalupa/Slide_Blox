@@ -203,9 +203,10 @@ $(document).ready(function(){
                 $(blocks[y][x]).css({"top" : y*(100/height) + "%", "left" : x*(100/width)  + "%"});
             }
         }
+        getEmptyBlockPosition();
+        checkSolvability();
         numberOfMoves = 0;
         $("#movesNum").text(numberOfMoves);
-        checkSolvability();
         getFinalState();
     }
 
@@ -216,10 +217,9 @@ $(document).ready(function(){
         for(i=0; i<height; i++) {
             for(j=0; j<width; j++) {
                 if(blocks[i][j] == 0) {
-                    numbers[i*width+j] = 666;
                     continue;
                 }
-                numbers[i*width+j] = blocks[i][j].attr("id");
+                numbers[i*width+j] = parseInt(blocks[i][j].attr("id"));
                 //console.log(numbers[i*width+j]);
             }
         }
@@ -229,8 +229,15 @@ $(document).ready(function(){
                     inversions++;
                 }
             }
-            console.log("inversions[" + i + "]: " + inversions);
+            //console.log("inversions[" + i + "]: " + inversions);
         }
         console.log("inversions: " + inversions);
+        
+        if(width%2 == 1 && inversions%2 == 0) {
+            return;
+        } else if(width%2 == 0 && (inversions%2 == (height-y0+1)%2)) {
+            return;
+        }
+        shuffle();
     }
  });
