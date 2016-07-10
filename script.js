@@ -33,7 +33,6 @@ $(document).ready(function(){
         }
         blocks[height-1][width-1] = 0;
         shuffle();
-        getFinalState();
     }
 
 
@@ -116,7 +115,7 @@ $(document).ready(function(){
     function moveRight() {
         if(x0>0) {
             blocks[y0][x0-1].css("left", 100/width*x0 + "%");
-            acualizeFinalState(blocks[y0][x0-1], y0*height+x0-1, y0*height+x0);
+            acualizeFinalState(blocks[y0][x0-1], y0*width+x0-1, y0*width+x0);
             blocks[y0][x0] = blocks[y0][x0-1];
             blocks[y0][x0-1] = 0;
             numberOfMoves++;
@@ -125,7 +124,7 @@ $(document).ready(function(){
     function moveLeft() {
         if(x0<width-1) {
             blocks[y0][x0+1].css("left", 100/width*x0 + "%");
-            acualizeFinalState(blocks[y0][x0+1], y0*height+x0+1, y0*height+x0);
+            acualizeFinalState(blocks[y0][x0+1], y0*width+x0+1, y0*width+x0);
             blocks[y0][x0] = blocks[y0][x0+1];
             blocks[y0][x0+1] = 0;
             numberOfMoves++;
@@ -134,7 +133,7 @@ $(document).ready(function(){
     function moveUp() {
         if(y0<height-1) {
             blocks[y0+1][x0].css("top", 100/height*y0 + "%");
-            acualizeFinalState(blocks[y0+1][x0], (y0+1)*height+x0, y0*height+x0);
+            acualizeFinalState(blocks[y0+1][x0], (y0+1)*width+x0, y0*width+x0);
             blocks[y0][x0] = blocks[y0+1][x0];
             blocks[y0+1][x0] = 0;
             numberOfMoves++;
@@ -143,7 +142,7 @@ $(document).ready(function(){
     function moveDown() {
         if(y0>0) {
             blocks[y0-1][x0].css("top", 100/height*y0 + "%");
-            acualizeFinalState(blocks[y0-1][x0], (y0-1)*height+x0, y0*height+x0);
+            acualizeFinalState(blocks[y0-1][x0], (y0-1)*width+x0, y0*width+x0);
             blocks[y0][x0] = blocks[y0-1][x0];
             blocks[y0-1][x0] = 0;
             numberOfMoves++;
@@ -169,7 +168,7 @@ $(document).ready(function(){
         finalState = 0;
         for(i = 0; i<height; i++) {
             for(j = 0; j<height; j++) {
-                if($(blocks[i][j]).attr("id") == (i*height+j)) {
+                if($(blocks[i][j]).attr("id") == (i*width+j)) {
                     finalState++;
                 }
             }
@@ -181,7 +180,6 @@ $(document).ready(function(){
         } else if($(element).attr("id") == newPos) {
             finalState++;
         }
-        console.log(finalState);
         if(finalState == height*width-1) {
             alert("Congratulations, you finished the puzzle.")
         }
@@ -207,6 +205,32 @@ $(document).ready(function(){
         }
         numberOfMoves = 0;
         $("#movesNum").text(numberOfMoves);
+        checkSolvability();
         getFinalState();
+    }
+
+    /* checks solvability of the puzzle, shuffles again if not solvable */
+    function checkSolvability() {
+        var inversions = 0;
+        var numbers = [];
+        for(i=0; i<height; i++) {
+            for(j=0; j<width; j++) {
+                if(blocks[i][j] == 0) {
+                    numbers[i*width+j] = 666;
+                    continue;
+                }
+                numbers[i*width+j] = blocks[i][j].attr("id");
+                //console.log(numbers[i*width+j]);
+            }
+        }
+        for(i=0; i<numbers.length; i++) {
+            for(j=i+1; j<numbers.length; j++) {
+                if(numbers[i] > numbers[j]) {
+                    inversions++;
+                }
+            }
+            console.log("inversions[" + i + "]: " + inversions);
+        }
+        console.log("inversions: " + inversions);
     }
  });
