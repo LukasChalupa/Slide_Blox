@@ -181,7 +181,8 @@ $(document).ready(function(){
             finalState++;
         }
         if(finalState == height*width-1) {
-            alert("Congratulations, you finished the puzzle.")
+            //$(".block h2").css("visibility","hidden");
+            alert("Congratulations, you finished the puzzle.");
         }
     }
 
